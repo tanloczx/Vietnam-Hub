@@ -1,0 +1,24 @@
+vietnam hub
+while true do
+    game.ReplicatedStorage.Remotes.Attack:FireServer()
+    wait(0.1)
+end
+local attackSpeed = 0.1
+local function checkBoss()
+    for _, entity in pairs(workspace:GetChildren()) do
+        if entity.Name == "Boss" then
+            return entity
+        end
+    end
+    return nil
+end
+local function attackBoss(boss)
+    game.ReplicatedStorage.Remotes.Attack:FireServer(boss)
+end
+while true do
+    local boss = checkBoss()
+    if boss then
+        attackBoss(boss)
+    end
+    wait(attackSpeed)
+end
